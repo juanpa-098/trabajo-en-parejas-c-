@@ -1,0 +1,52 @@
+//desarrollar un programa que permita calcular la nomina de 50 empleados, guarde los datos en una matriz y muestre el salario neto en un vector cuando se imprima el salario de los empleados, resaltar en rojo los que se ganan menos de  dos millones.
+using System;
+class Program
+{
+    static void Main()
+    {
+        int empleados = 50;
+        // Matriz: [empleado, datos]
+        // 0 = salario base, 1 = valor hora, 2 = horas extras, 3 = salario neto
+        double[,] datos = new double[empleados, 4];
+        // Vector para salarios netos
+        double[] salarioNeto = new double[empleados];
+        for (int i = 0; i < empleados; i++)
+        {
+            Console.WriteLine($"\nEmpleado {i + 1}");
+            Console.Write("Ingrese salario base: ");
+            datos[i, 0] = double.Parse(Console.ReadLine());
+            Console.Write("Ingrese valor de la hora: ");
+            datos[i, 1] = double.Parse(Console.ReadLine());
+            Console.Write("Ingrese horas extras: ");
+            datos[i, 2] = double.Parse(Console.ReadLine());
+            // Cálculo de horas extras
+            double pagoExtras = datos[i, 2] * datos[i, 1] * 1.5;
+            // Salario neto
+            datos[i, 3] = datos[i, 0] + pagoExtras;
+            // Guardar en vector
+            salarioNeto[i] = datos[i, 3];
+            // Mostrar inmediatamente el salario del empleado
+            if (salarioNeto[i] < 2000000)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+            Console.WriteLine($"Salario total del empleado {i + 1}: {salarioNeto[i]:N2}");
+            Console.ResetColor();
+        }
+        Console.WriteLine("\n--- RESUMEN FINAL ---");
+        // Mostrar todos al final también (opcional)
+        for (int i = 0; i < empleados; i++)
+        {
+            if (salarioNeto[i] < 2000000)
+                Console.ForegroundColor = ConsoleColor.Red;
+            else
+                Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine($"Empleado {i + 1}: {salarioNeto[i]:N2}");
+        }
+        Console.ResetColor();
+    }
+}
