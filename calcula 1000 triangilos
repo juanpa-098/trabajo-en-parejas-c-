@@ -1,0 +1,35 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int totalRectangulos = 1000;
+
+        // Vector para guardar las areas
+        double[] areas = new double[totalRectangulos];
+
+        for (int i = 0; i < totalRectangulos; i++)
+        {
+            Console.WriteLine($"\nRectangulo {i + 1}");
+
+            Console.Write("Ingrese el largo: ");
+            double largo = double.Parse(Console.ReadLine());
+
+            Console.Write("Ingrese el ancho: ");
+            double ancho = double.Parse(Console.ReadLine());
+
+            // Calcular area
+            areas[i] = largo * ancho;
+
+            Console.WriteLine($"Area del rectangulo {i + 1}: {areas[i]:N2}");
+        }
+
+        // Resumen final
+        Console.WriteLine("\n--- RESUMEN FINAL ---");
+        for (int i = 0; i < totalRectangulos; i++)
+        {
+            Console.WriteLine($"Rectangulo {i + 1}: {areas[i]:N2}");
+        }
+    }
+}
